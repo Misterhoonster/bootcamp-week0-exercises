@@ -7,8 +7,8 @@
 
 const coinToss = (guess, callback) => {
   const result = Math.round(Math.random())
-  const didWin = guess === result
-  callback(didWin)
+  const didWin = (guess === result)
+  determineWinner(didWin)
 }
 
 const getUser = (callback) => {
@@ -17,5 +17,23 @@ const getUser = (callback) => {
     lastName: 'Doe',
     guess: Math.round(Math.random()),
   }
-  callback(user)
+  flipCoin(user)
 }
+
+const flipCoin = (user) => {
+  coinToss(user.guess, determineWinner);
+}
+
+const determineWinner = (didWin) => {
+  if (didWin)
+  {
+    console.log("CORRECT!");
+  }
+  else
+  {
+    console.log("INCORRECT :(((");
+  }
+}
+
+getUser(flipCoin);
+
